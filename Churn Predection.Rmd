@@ -1,0 +1,48 @@
+---
+title: "Projeto Machine Learning"
+author: "raymundo"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+```{r}
+#bibliotecas
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+```
+
+
+```{r}
+dados <- read.csv("./dataset/Customer-Churn-Records.csv", 
+                     sep = ',', 
+                     encoding = 'UTF-8', 
+                     header = T)
+head(dados)
+summary(dados)
+
+```
+
+```{r}
+# Resumo estatístico das variáveis categóricas
+table(dados$Geography)
+table(dados$Gender)
+
+# Histograma da pontuação de crédito
+ggplot(data = dados, aes(x = CreditScore)) +
+  geom_histogram(binwidth = 20, fill = "blue", color = "black") +
+  labs(title = "Distribuição da Pontuação de Crédito")
+
+# Gráfico de barras da geografia
+ggplot(data = dados, aes(x = Geography, fill = Geography)) +
+  geom_bar() +
+  labs(title = "Distribuição por Geografia")
+
+# Gráfico de barras do gênero
+ggplot(data = dados, aes(x = Gender, fill = Gender)) +
+  geom_bar() +
+  labs(title = "Distribuição por Gênero")
+```
+
